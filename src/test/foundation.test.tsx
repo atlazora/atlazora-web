@@ -25,6 +25,7 @@ describe("Web internationalization foundation", () => {
         title="Atlazora"
         body="Marketplace presentation foundation"
         localeLabel="English"
+        actionLabel="Continue"
       />,
     );
 

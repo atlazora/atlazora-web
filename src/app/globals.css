@@ -2,8 +2,34 @@
 
 :root {
   color-scheme: light;
-  --atlazora-background: #ffffff;
-  --atlazora-foreground: #171717;
+
+  --atlazora-color-background: #ffffff;
+  --atlazora-color-surface: #f8fafc;
+  --atlazora-color-foreground: #172033;
+  --atlazora-color-muted: #5d6678;
+  --atlazora-color-border: #d8dee9;
+  --atlazora-color-primary: #173f73;
+  --atlazora-color-primary-foreground: #ffffff;
+  --atlazora-color-focus: #2563eb;
+
+  --atlazora-font-sans: Arial, Helvetica, sans-serif;
+  --atlazora-text-sm: 0.875rem;
+  --atlazora-text-base: 1rem;
+  --atlazora-text-lg: 1.125rem;
+  --atlazora-text-display: clamp(2.5rem, 8vw, 5rem);
+
+  --atlazora-space-1: 0.25rem;
+  --atlazora-space-2: 0.5rem;
+  --atlazora-space-3: 0.75rem;
+  --atlazora-space-4: 1rem;
+  --atlazora-space-6: 1.5rem;
+  --atlazora-space-8: 2rem;
+
+  --atlazora-radius-sm: 0.375rem;
+  --atlazora-radius-md: 0.75rem;
+  --atlazora-shadow-surface: 0 1rem 3rem rgb(15 23 42 / 0.08);
+  --atlazora-focus-ring: 0 0 0 3px rgb(37 99 235 / 0.35);
+  --atlazora-motion-fast: 160ms;
 }
 
 * {
@@ -12,15 +38,15 @@
 
 html {
   min-height: 100%;
-  background: var(--atlazora-background);
+  background: var(--atlazora-color-background);
 }
 
 body {
   min-height: 100vh;
   margin: 0;
-  background: var(--atlazora-background);
-  color: var(--atlazora-foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--atlazora-color-background);
+  color: var(--atlazora-color-foreground);
+  font-family: var(--atlazora-font-sans);
 }
 
 button,
@@ -30,34 +56,113 @@ textarea {
   font: inherit;
 }
 
+:focus-visible {
+  outline: 2px solid var(--atlazora-color-focus);
+  outline-offset: 3px;
+  box-shadow: var(--atlazora-focus-ring);
+}
+
 .atlazora-foundation {
   display: grid;
   min-height: 100vh;
   place-items: center;
-  padding: 2rem;
+  padding-block: var(--atlazora-space-8);
+  padding-inline: var(--atlazora-space-6);
 }
 
-.atlazora-foundation section {
-  width: min(100%, 48rem);
+.atlazora-foundation__content {
+  inline-size: min(100%, 48rem);
 }
 
 .atlazora-eyebrow {
-  margin: 0 0 0.75rem;
-  font-size: 0.875rem;
+  margin-block: 0 var(--atlazora-space-3);
+  margin-inline: 0;
+  color: var(--atlazora-color-muted);
+  font-size: var(--atlazora-text-sm);
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
+[dir="rtl"] .atlazora-eyebrow {
+  letter-spacing: 0;
+  text-transform: none;
+}
+
 .atlazora-foundation h1 {
   margin: 0;
-  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-size: var(--atlazora-text-display);
   line-height: 1;
 }
 
 .atlazora-foundation h1 + p {
-  max-width: 42rem;
-  margin: 1.5rem 0 0;
-  font-size: 1.125rem;
+  max-inline-size: 42rem;
+  margin-block: var(--atlazora-space-6) 0;
+  margin-inline: 0;
+  color: var(--atlazora-color-muted);
+  font-size: var(--atlazora-text-lg);
   line-height: 1.7;
+}
+
+.atlazora-foundation__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--atlazora-space-3);
+  margin-block-start: var(--atlazora-space-6);
+}
+
+.atlazora-surface {
+  border: 1px solid var(--atlazora-color-border);
+  border-radius: var(--atlazora-radius-md);
+  background: var(--atlazora-color-surface);
+  box-shadow: var(--atlazora-shadow-surface);
+  padding-block: var(--atlazora-space-8);
+  padding-inline: var(--atlazora-space-8);
+}
+
+.atlazora-button {
+  min-block-size: 2.75rem;
+  border: 1px solid transparent;
+  border-radius: var(--atlazora-radius-sm);
+  padding-block: var(--atlazora-space-2);
+  padding-inline: var(--atlazora-space-4);
+  cursor: pointer;
+  font-weight: 700;
+  transition:
+    background-color var(--atlazora-motion-fast) ease,
+    border-color var(--atlazora-motion-fast) ease;
+}
+
+.atlazora-button--primary {
+  background: var(--atlazora-color-primary);
+  color: var(--atlazora-color-primary-foreground);
+}
+
+.atlazora-button--secondary {
+  border-color: var(--atlazora-color-border);
+  background: var(--atlazora-color-surface);
+  color: var(--atlazora-color-foreground);
+}
+
+.atlazora-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.atlazora-text-link {
+  color: var(--atlazora-color-primary);
+  font-weight: 700;
+  text-decoration-thickness: 0.1em;
+  text-underline-offset: 0.2em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
 }

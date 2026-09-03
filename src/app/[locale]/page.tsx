@@ -25,6 +25,7 @@ export default async function LocalePage({ params }: LocalePageProps) {
       title={t("title")}
       body={t("body")}
       localeLabel={t("locale")}
+      actionLabel={t("action")}
     />
   );
 }
