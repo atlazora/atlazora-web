@@ -51,3 +51,13 @@ Verify:
 The current application surface is intentionally minimal. W00-WU07 capabilities will be added incrementally within the approved Work Unit scope.
 
 W00-WU08 — Admin Foundation and later Work Units remain outside this bootstrap scope.
+
+## Web Services and Adapters
+
+Browser and Next.js presentation code must cross the Atlazora-owned Services/Adapters boundary before consuming backend APIs.
+
+The authoritative executable contract source is the separate `atlazora-contracts` repository. Business endpoint models and generated clients must be derived from approved OpenAPI contracts when those endpoint contracts exist; this repository must not redefine their ownership.
+
+The current foundation contains transport, presentation-state, and configuration primitives only. It does not define marketplace business contracts, backend authorization rules, transactional truth, or donor-platform domain models.
+
+`NEXT_PUBLIC_ATLAZORA_API_BASE_URL` is browser-visible configuration and must never contain credentials or privileged secrets. Server-only configuration belongs behind modules protected by `server-only`.
