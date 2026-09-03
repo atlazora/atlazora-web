@@ -54,4 +54,18 @@ jobs:
         run: npm run test:e2e
 
       - name: Dependency audit
-        run: npm audit --audit-level=high
+        run: |
+          for attempt in 1 2 3; do
+            echo "Dependency audit attempt ${attempt}/3"
+            if npm audit --audit-level=high; then
+              exit 0
+            fi
+
+            if [ "${attempt}" -lt 3 ]; then
+              echo "Dependency audit failed; retrying in 10 seconds."
+              sleep 10
+            fi
+          done
+
+          echo "Dependency audit failed after 3 attempts."
+          exit 1
