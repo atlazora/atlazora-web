@@ -1,0 +1,63 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: light;
+  --atlazora-background: #ffffff;
+  --atlazora-foreground: #171717;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+  background: var(--atlazora-background);
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  background: var(--atlazora-background);
+  color: var(--atlazora-foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+.atlazora-foundation {
+  display: grid;
+  min-height: 100vh;
+  place-items: center;
+  padding: 2rem;
+}
+
+.atlazora-foundation section {
+  width: min(100%, 48rem);
+}
+
+.atlazora-eyebrow {
+  margin: 0 0 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.atlazora-foundation h1 {
+  margin: 0;
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  line-height: 1;
+}
+
+.atlazora-foundation h1 + p {
+  max-width: 42rem;
+  margin: 1.5rem 0 0;
+  font-size: 1.125rem;
+  line-height: 1.7;
+}
