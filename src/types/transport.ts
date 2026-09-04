@@ -1,10 +1,10 @@
 export type TransportProblem = {
+  code: string;
   type?: string;
-  title: string;
-  status: number;
+  title?: string;
+  status?: number;
   detail?: string;
   instance?: string;
-  code?: string;
 };
 
 export type TransportSuccess<T> = {
@@ -15,7 +15,7 @@ export type TransportSuccess<T> = {
 
 export type TransportFailure = {
   ok: false;
-  status: number;
+  status?: number;
   problem: TransportProblem;
 };
 

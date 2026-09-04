@@ -61,3 +61,33 @@ The authoritative executable contract source is the separate `atlazora-contracts
 The current foundation contains transport, presentation-state, and configuration primitives only. It does not define marketplace business contracts, backend authorization rules, transactional truth, or donor-platform domain models.
 
 `NEXT_PUBLIC_ATLAZORA_API_BASE_URL` is browser-visible configuration and must never contain credentials or privileged secrets. Server-only configuration belongs behind modules protected by `server-only`.
+
+## Foundation verification
+
+Install the exact locked dependency graph:
+
+```bash
+npm ci
+```
+
+Copy `.env.example` to a local environment file when a browser API base URL is required. Only `NEXT_PUBLIC_ATLAZORA_API_BASE_URL` is browser-visible. Credentials, tokens, signing keys, and other privileged configuration must remain server-only and must never use the `NEXT_PUBLIC_` prefix.
+
+Run the local development server:
+
+```bash
+npm run dev
+```
+
+Run the foundation verification gates:
+
+```bash
+npm run typecheck
+npm run lint
+npm run format:check
+npm run test:unit
+npm run test:e2e
+npm run build
+npm audit --audit-level=high
+```
+
+The web repository consumes Atlazora contracts through its Services/Adapters boundary. Shared executable API contracts remain authoritative in `atlazora-contracts`; this repository must not duplicate or redefine those contracts.

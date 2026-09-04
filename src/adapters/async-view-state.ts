@@ -22,6 +22,10 @@ export function toAsyncViewState<T>(
   return {
     status: "error",
     problem: result.problem,
-    recoverable: result.status === 408 || result.status === 429 || result.status >= 500,
+    recoverable:
+      result.status === undefined ||
+      result.status === 408 ||
+      result.status === 429 ||
+      result.status >= 500,
   };
 }
